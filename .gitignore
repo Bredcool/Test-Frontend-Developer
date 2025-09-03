@@ -1,0 +1,30 @@
+# Dependency
+node_modules/
+
+# Build output
+dist/
+*.log
+
+# Local env files
+.env*
+!.env.example
+
+# IDEs and editors
+.vscode/
+.idea/
+.DS_Store
+
+# System files
+Thumbs.db
+
+# Git files (optional, biasanya tidak perlu gitignore ini)
+# .git/
+# .gitignore
+
+# Docker
+Dockerfile*
+docker-compose.yml
+
+# Cache
+*.cache/
+.cache/

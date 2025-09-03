@@ -1,0 +1,56 @@
+<div class="employee-list-container">
+    <h2>Employee List</h2>
+
+    <!-- 🔎 Search Bar -->
+    <div class="search-bar">
+        <input placeholder="Search by Name" [(ngModel)]="searchName" (ngModelChange)="applyFilter()" />
+        <input placeholder="Search by Email" [(ngModel)]="searchEmail" (ngModelChange)="applyFilter()" />
+        <button class="btn btn-primary" (click)="goToAdd()">+ Add Employee</button>
+    </div>
+
+    <!-- 📋 Table (selalu muncul, responsif dengan scroll) -->
+    <div class="table-wrapper">
+        <table class="employee-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Email</th>
+                    <th>Basic Salary</th>
+                    <th>Status</th>
+                    <th>Group</th>
+                    <th class="action-col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let emp of pagedEmployees">
+                    <td>{{ emp.username }}</td>
+                    <td>{{ emp.firstName }}</td>
+                    <td>{{ emp.email }}</td>
+                    <td>{{ emp.basicSalary | currency:'IDR':'symbol' }}</td>
+                    <td>
+                        <span class="status" [ngClass]="emp.status.toLowerCase()">{{ emp.status }}</span>
+                    </td>
+                    <td>{{ emp.group }}</td>
+                    <td class="action-buttons">
+                        <button class="btn btn-info" (click)="goToDetail(emp.id)">Detail</button>
+                        <button class="btn btn-warning" (click)="editEmployee(emp)">Edit</button>
+                        <button class="btn btn-danger" (click)="deleteEmployee(emp)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 📌 Pagination -->
+    <div class="pagination">
+        <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Prev</button>
+
+        <button *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i + 1"
+            (click)="changePage(i + 1)">
+            {{ i + 1 }}
+        </button>
+
+        <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+</div>

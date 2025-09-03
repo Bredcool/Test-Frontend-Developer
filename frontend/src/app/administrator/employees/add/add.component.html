@@ -1,0 +1,83 @@
+<div class="form-container">
+    <h2>{{ isEdit ? 'Edit Employee' : 'Add Employee' }}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="employee-form">
+        <!-- Username -->
+        <div class="form-group">
+            <label>Username</label>
+            <input formControlName="username" placeholder="Enter username" />
+            <div class="error" *ngIf="getError('username')">{{ getError('username') }}</div>
+        </div>
+
+        <!-- First Name -->
+        <div class="form-group">
+            <label>First Name</label>
+            <input formControlName="firstName" placeholder="Enter first name" />
+            <div class="error" *ngIf="getError('firstName')">{{ getError('firstName') }}</div>
+        </div>
+
+        <!-- Last Name -->
+        <div class="form-group">
+            <label>Last Name</label>
+            <input formControlName="lastName" placeholder="Enter last name" />
+            <div class="error" *ngIf="getError('lastName')">{{ getError('lastName') }}</div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" formControlName="email" placeholder="example@mail.com" />
+            <div class="error" *ngIf="getError('email')">{{ getError('email') }}</div>
+        </div>
+
+        <!-- Birth Date -->
+        <div class="form-group">
+            <label>Birth Date</label>
+            <input type="date" formControlName="birthDate" [max]="today" />
+            <div class="error" *ngIf="getError('birthDate')">{{ getError('birthDate') }}</div>
+        </div>
+
+        <!-- Basic Salary -->
+        <div class="form-group">
+            <label>Basic Salary</label>
+            <input type="number" formControlName="basicSalary" placeholder="Enter salary" />
+            <div class="error" *ngIf="getError('basicSalary')">{{ getError('basicSalary') }}</div>
+        </div>
+
+        <!-- Status -->
+        <div class="form-group">
+            <label>Status</label>
+            <select formControlName="status">
+                <option value="">-- Select Status --</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+            <div class="error" *ngIf="getError('status')">{{ getError('status') }}</div>
+        </div>
+
+        <!-- Group -->
+        <div class="form-group">
+            <label>Group</label>
+            <select formControlName="group">
+                <option value="">-- Select Group --</option>
+                <option *ngFor="let g of groups" [value]="g">{{ g }}</option>
+            </select>
+            <div class="error" *ngIf="getError('group')">{{ getError('group') }}</div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+            <label>Description</label>
+            <textarea formControlName="description" placeholder="Enter description"></textarea>
+            <div class="error" *ngIf="getError('description')">{{ getError('description') }}</div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-actions">
+            <button type="submit" [disabled]="form.invalid" class="btn-primary">
+                {{ isEdit ? 'Update' : 'Save' }}
+            </button>
+            <button type="button" class="btn-secondary" (click)="onCancel()">Cancel</button>
+        </div>
+    </form>
+</div>

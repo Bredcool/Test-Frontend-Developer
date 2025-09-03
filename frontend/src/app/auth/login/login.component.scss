@@ -1,0 +1,143 @@
+/* Reset bawaan */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #0d0d0d; // fallback warna hitam pekat
+    font-family: 'Inter', sans-serif;
+}
+
+/* Container utama */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #000000);
+    background-size: 300% 300%;
+    animation: gradientShift 15s ease infinite;
+    padding: 1rem;
+}
+
+/* Kartu login */
+.login-card {
+    background: rgba(25, 25, 25, 0.85);
+    backdrop-filter: blur(16px);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    max-width: 380px;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    animation: fadeIn 0.9s ease;
+}
+
+.login-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.5px;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: #aaa;
+    margin-bottom: 2rem;
+}
+
+/* Input */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: none;
+    border-radius: 12px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-size: 0.95rem;
+    transition: background 0.3s, box-shadow 0.3s;
+
+    &::placeholder {
+        color: #aaa;
+    }
+
+    &:focus {
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 8px #0072ff;
+    }
+}
+
+/* Tombol */
+button {
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 198, 255, 0.4);
+    }
+
+    &:disabled {
+        background: #333;
+        cursor: not-allowed;
+    }
+}
+
+/* Error message */
+.error {
+    color: #ff6b6b;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Responsif untuk mobile */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .login-card h2 {
+        font-size: 1.5rem;
+    }
+}
